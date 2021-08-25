@@ -9,6 +9,13 @@ const removable = {
   value: false,
 };
 
+const toggleDraggable = () => {
+  const allList = Array.from(document.querySelectorAll('.to-do-row'));
+  allList.forEach((list) => {
+    list.draggable = !list.draggable;
+  });
+};
+
 const getFromStorage = (tasks) => (localStorage.tasks ? JSON.parse(localStorage.getItem('tasks')) : tasks);
 
 const storeLocally = (tasks) => {
@@ -104,6 +111,7 @@ const drop = (ev, showToDo) => {
   } else if (prevNextIds.prevId > prevNextIds.nextId) {
     elUnder.parentElement.insertBefore(dragStore, elUnder);
   }
+
   const { id } = elUnder;
   if (prevNextIds.prevId < prevNextIds.nextId) {
     setTimeout(() => {
@@ -111,7 +119,8 @@ const drop = (ev, showToDo) => {
       colorElementOnDrag(elUnder);
       setTimeout(() => {
         removeColorOnDrop(getCorrectEventTarget(false, id), showToDo);
-      }, 200);
+      }, 800);
+      toggleDraggable();
     }, 10);
   } else if (prevNextIds.prevId > prevNextIds.nextId) {
     setTimeout(() => {
@@ -119,7 +128,8 @@ const drop = (ev, showToDo) => {
       colorElementOnDrag(elUnder);
       setTimeout(() => {
         removeColorOnDrop(elUnder, showToDo);
-      }, 200);
+      }, 800);
+      toggleDraggable();
     }, 10);
   }
 };
