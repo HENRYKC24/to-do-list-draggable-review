@@ -8,10 +8,12 @@ import {
   removeOne,
   removeSelected,
   addToDo,
+  storeLocally,
+  getFromStorage,
+  removable,
+  tasks,
 } from './manipulateToDo';
-
-let tasks = [];
-let removable = true;
+// console.log(tasks);
 const goToInput = () => document.querySelector('.input').focus();
 
 document.querySelector(
@@ -30,9 +32,9 @@ const alternateTickAndCheck = (tick, check, task, input2) => {
   }
 };
 
-const showToDo = () => {
+const showToDo = (tasks) => {
   document.querySelector('.to-do-list').innerHTML = '';
-  const tasks = JSON.parse(localStorage.getItem('tasks'));
+  tasks = getFromStorage(tasks);
   if (typeof tasks[0] === 'object') {
     tasks.forEach((task, index, tasks) => {
       // eslint-disable-next-line no-use-before-define
@@ -40,18 +42,12 @@ const showToDo = () => {
     });
     return true;
   }
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  storeLocally(tasks);
   return true;
 };
 
 const refresh = (showToDo) => {
-  // tasks = _.sortBy(tasks, 'index');
-  if (localStorage.getItem('tasks') !== null) {
-    tasks = JSON.parse(localStorage.getItem('tasks'));
-  } else {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }
-  showToDo();
+  showToDo(tasks);
   goToInput();
   return true;
 };
@@ -94,7 +90,6 @@ const generateToDoRows = (text, task, tasks) => {
     i.classList.remove('fa-arrows-alt');
     i.classList.add('fa-trash-alt');
     i.addEventListener('mousedown', () => {
-      // removable = true;
       removeOne(task, showToDo, removable);
     });
   });
@@ -123,14 +118,14 @@ const generateToDoRows = (text, task, tasks) => {
   const editToDo = (input, task, tasks) => {
     const { value } = input;
     if (value === '') {
-      removable = true;
+      removable.value = true;
       removeOne(task, showToDo, removable);
       return false;
     }
     task.description = value;
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    storeLocally(tasks);
     // eslint-disable-next-line no-use-before-define
-    showToDo();
+    showToDo(tasks);
     return true;
   };
 
@@ -142,7 +137,7 @@ const generateToDoRows = (text, task, tasks) => {
     i.classList.add('fa-arrows-alt');
 
     i.removeEventListener('click', () => {
-      removable = true;
+      removable.value = true;
       removeOne(task, showToDo, removable);
       return true;
     });
@@ -172,10 +167,8 @@ const generateToDoRows = (text, task, tasks) => {
   return true;
 };
 
-document.querySelector('.clear-text').addEventListener('click', () => {
-  if (localStorage.getItem('tasks') !== null) {
-    tasks = JSON.parse(localStorage.getItem('tasks'));
-  }
+document.querySelector('.clear-text').addEventListener('click', (tasks) => {
+  tasks = getFromStorage(tasks);
   removeSelected(tasks, showToDo);
 });
 
