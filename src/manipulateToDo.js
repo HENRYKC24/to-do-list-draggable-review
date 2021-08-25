@@ -64,7 +64,7 @@ const colorElementOnDrag = (element) => {
   });
 };
 
-const removeColorOnDrop = (elUnder) => {
+const removeColorOnDrop = (elUnder, showToDo) => {
   elUnder.style.backgroundColor = '#fff';
   elUnder.style.color = '#fff';
   Array.from(elUnder.childNodes).forEach((node) => {
@@ -86,6 +86,7 @@ const removeColorOnDrop = (elUnder) => {
       });
     }
   });
+  showToDo(getFromStorage());
 };
 
 const dragStart = (e) => {
@@ -93,7 +94,7 @@ const dragStart = (e) => {
   colorElementOnDrag(elUnder);
 };
 
-const drop = (ev) => {
+const drop = (ev, showToDo) => {
   ev.preventDefault();
   const elUnder = getCorrectEventTarget(ev, false);
   prevNextIds.nextId = Number(elUnder.id);
@@ -109,7 +110,7 @@ const drop = (ev) => {
       const elUnder = getCorrectEventTarget(false, id);
       colorElementOnDrag(elUnder);
       setTimeout(() => {
-        removeColorOnDrop(getCorrectEventTarget(false, id));
+        removeColorOnDrop(getCorrectEventTarget(false, id), showToDo);
       }, 810);
     }, 10);
   } else if (prevNextIds.prevId > prevNextIds.nextId) {
@@ -117,7 +118,7 @@ const drop = (ev) => {
       const elUnder = getCorrectEventTarget(false, id);
       colorElementOnDrag(elUnder);
       setTimeout(() => {
-        removeColorOnDrop(elUnder);
+        removeColorOnDrop(elUnder, showToDo);
       }, 810);
     }, 10);
   }

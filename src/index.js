@@ -13,7 +13,7 @@ import {
   removable,
   tasks,
 } from './manipulateToDo';
-// console.log(tasks);
+
 const goToInput = () => document.querySelector('.input').focus();
 
 document.querySelector(
@@ -162,7 +162,7 @@ const generateToDoRows = (text, task, tasks) => {
   div.addEventListener('drag', (ev) => drag(ev));
   div.addEventListener('dragstart', (e) => dragStart(e));
   div.addEventListener('dragend', () => dragEnd(showToDo));
-  div.addEventListener('drop', (ev) => drop(ev));
+  div.addEventListener('drop', (ev) => drop(ev, showToDo));
 
   return true;
 };
