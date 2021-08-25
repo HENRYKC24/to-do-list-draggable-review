@@ -22,7 +22,7 @@ A smart draggable to do list project copy to practice code review and refactorin
 
 To get a local copy up and running follow these simple example steps.
 
-Clone the repo with `git clone https://github.com/HENRYKC24/to-do-draggable-review.git`
+Clone the repo with `git clone https://github.com/HENRYKC24/to-do-list-draggable-review.git`
 
 Run `npm install` from the command line
 
@@ -48,7 +48,7 @@ The app is deployed using GitHub pages. You can view it using the 'live demo' ab
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/HENRYKC24/to-do-draggable-review/issues/).
+Feel free to check the [issues page](https://github.com/HENRYKC24/to-do-list-draggable-review/issues/).
 
 ## Show your support
 
