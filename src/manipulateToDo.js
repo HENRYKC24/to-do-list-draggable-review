@@ -111,7 +111,7 @@ const drop = (ev, showToDo) => {
       colorElementOnDrag(elUnder);
       setTimeout(() => {
         removeColorOnDrop(getCorrectEventTarget(false, id), showToDo);
-      }, 810);
+      }, 200);
     }, 10);
   } else if (prevNextIds.prevId > prevNextIds.nextId) {
     setTimeout(() => {
@@ -119,7 +119,7 @@ const drop = (ev, showToDo) => {
       colorElementOnDrag(elUnder);
       setTimeout(() => {
         removeColorOnDrop(elUnder, showToDo);
-      }, 810);
+      }, 200);
     }, 10);
   }
 };
