@@ -80,8 +80,6 @@ const generateToDoRows = (text, task, tasks) => {
 
   div.appendChild(div2);
 
-
-
   const i = document.createElement('i');
   i.classList.add('fas', 'fa-arrows-alt');
   div.appendChild(i);
