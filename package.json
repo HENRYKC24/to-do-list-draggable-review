@@ -4,7 +4,7 @@
   "description": "A smart to-do list that can be dragged from one place to another",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --collect-coverage",
     "build": "webpack",
     "start": "webpack serve --open"
   },
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/HENRYKC24/to-do-list-draggable#readme",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.15.0",
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.2.0",
     "eslint": "^7.31.0",
@@ -26,6 +27,7 @@
     "eslint-plugin-import": "^2.23.4",
     "hint": "^6.1.4",
     "html-webpack-plugin": "^5.3.2",
+    "jest": "^27.0.6",
     "style-loader": "^3.2.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
