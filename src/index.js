@@ -80,18 +80,24 @@ const generateToDoRows = (text, task, tasks) => {
 
   div.appendChild(div2);
 
+
+
   const i = document.createElement('i');
   i.classList.add('fas', 'fa-arrows-alt');
   div.appendChild(i);
+
+  const input2TrashRemoveEvent = () => {
+    removable.value = true;
+    removeOne(task, showToDo, removable);
+    return true;
+  };
 
   input2.addEventListener('focus', () => {
     input2.style.backgroundColor = '#fffeca';
     div.style.backgroundColor = '#fffeca';
     i.classList.remove('fa-arrows-alt');
     i.classList.add('fa-trash-alt');
-    i.addEventListener('mousedown', () => {
-      removeOne(task, showToDo, removable);
-    });
+    i.addEventListener('mousedown', input2TrashRemoveEvent);
   });
   tick.addEventListener('click', () => {
     updateCompleted(task, tasks);
@@ -135,12 +141,7 @@ const generateToDoRows = (text, task, tasks) => {
 
     i.classList.remove('fa-trash-alt');
     i.classList.add('fa-arrows-alt');
-
-    i.removeEventListener('click', () => {
-      removable.value = true;
-      removeOne(task, showToDo, removable);
-      return true;
-    });
+    i.removeEventListener('mousedown', input2TrashRemoveEvent);
   });
 
   input2.addEventListener('change', () => {
