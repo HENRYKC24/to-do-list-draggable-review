@@ -1,9 +1,10 @@
-# to-do-list-draggable
+# to-do-list-draggable-review
 A smart draggable to do list project copy to practice code review and refactoring
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
 ![screenshot](./app_screenshot.png)
 ![screenshot](./app_screenshot_moblile.png)
+![test-screenshot](./src/scrn-sht.JPG)
 
 ## Built With
 
@@ -11,6 +12,7 @@ A smart draggable to do list project copy to practice code review and refactorin
 - CSS
 - JavaScript
 - Webpack
+- Jest
 
 ## Live Demo
 
@@ -35,7 +37,7 @@ The app is deployed using GitHub pages. You can view it using the 'live demo' ab
 
 
 
-## Author
+## Authors
 
 👤 **Henry Kc**
 
