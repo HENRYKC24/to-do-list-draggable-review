@@ -245,3 +245,18 @@ describe('Dragging one item to another location should rearrange and updated the
     ).toBe(true);
   });
 });
+
+describe('Can clear all completed tasks', () => {
+  test('Clear completed removes one out of three', () => {
+    const allTasks = localStorage.getFromStorage();
+    const numberOfTasks = allTasks.length;
+    localStorage.clearAllCompleted();
+    const currentAllTasks = localStorage.getFromStorage();
+    const currentNumberOfTasks = currentAllTasks.length;
+    expect(
+      numberOfTasks - currentNumberOfTasks === 1
+        && numberOfTasks === 3
+        && currentNumberOfTasks === 2,
+    ).toEqual(true);
+  });
+});
