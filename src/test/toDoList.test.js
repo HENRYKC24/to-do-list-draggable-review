@@ -150,3 +150,98 @@ describe('Update task completed status', () => {
     expect(completed).toBe(true);
   });
 });
+
+describe('Dragging one item to another location should rearrange and updated their indices', () => {
+  test('Take first task under the last task and update the indices', () => {
+    const allTasks = localStorage.getFromStorage();
+    const firstElementContent = allTasks[0].description;
+    const secondElementContent = allTasks[1].description;
+    const thirdElementContent = allTasks[2].description;
+    const len = allTasks.length;
+    expect(
+      firstElementContent === 'Wash the car'
+        && secondElementContent === 'Code up an e-commerce website'
+        && thirdElementContent === 'Review the pull request'
+        && len === 3
+        && allTasks[0].index === 1,
+    ).toBe(true);
+
+    const [first, , third] = allTasks;
+    drag(first.index, third.index);
+
+    const all = localStorage.getFromStorage();
+    const firstEl = all[0].description;
+    const secondEl = all[1].description;
+    const thirdEl = all[2].description;
+    const { length } = all;
+    expect(
+      firstEl === 'Code up an e-commerce website'
+        && secondEl === 'Review the pull request'
+        && thirdEl === 'Wash the car'
+        && length === 3
+        && all[0].index === 1,
+    ).toBe(true);
+  });
+
+  test('Take second task below last task and update the indices', () => {
+    const allTasks = localStorage.getFromStorage();
+    const firstElementContent = allTasks[0].description;
+    const secondElementContent = allTasks[1].description;
+    const thirdElementContent = allTasks[2].description;
+    const len = allTasks.length;
+    expect(
+      firstElementContent === 'Code up an e-commerce website'
+        && secondElementContent === 'Review the pull request'
+        && thirdElementContent === 'Wash the car'
+        && len === 3
+        && allTasks[0].index === 1,
+    ).toBe(true);
+
+    const [, second, third] = allTasks;
+    drag(second.index, third.index);
+
+    const all = localStorage.getFromStorage();
+    const firstEl = all[0].description;
+    const secondEl = all[1].description;
+    const thirdEl = all[2].description;
+    const { length } = all;
+    expect(
+      firstEl === 'Code up an e-commerce website'
+        && secondEl === 'Wash the car'
+        && thirdEl === 'Review the pull request'
+        && length === 3
+        && all[0].index === 1,
+    ).toBe(true);
+  });
+
+  test('Take third task up above second task and update the indices', () => {
+    const allTasks = localStorage.getFromStorage();
+    const firstElementContent = allTasks[0].description;
+    const secondElemetContent = allTasks[1].description;
+    const thirdElementContent = allTasks[2].description;
+    const len = allTasks.length;
+    expect(
+      firstElementContent === 'Code up an e-commerce website'
+        && secondElemetContent === 'Wash the car'
+        && thirdElementContent === 'Review the pull request'
+        && len === 3
+        && allTasks[0].index === 1,
+    ).toBe(true);
+
+    const [, second, third] = allTasks;
+    drag(third.index, second.index);
+
+    const all = localStorage.getFromStorage();
+    const firstElContent = allTasks[0].description;
+    const secondElContent = allTasks[1].description;
+    const thirdElContent = allTasks[2].description;
+    const { length } = all;
+    expect(
+      firstElContent === 'Code up an e-commerce website'
+        && secondElContent === 'Review the pull request'
+        && thirdElContent === 'Wash the car'
+        && length === 3
+        && all[0].index === 1,
+    ).toBe(true);
+  });
+});
