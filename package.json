@@ -8,6 +8,7 @@
     "build": "webpack",
     "start": "webpack serve --open"
   },
+  "jest": { "verbose": true, "testEnvironment": "jsdom" },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/HENRYKC24/to-do-list-draggable.git"
