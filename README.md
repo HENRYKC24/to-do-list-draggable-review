@@ -45,6 +45,9 @@ The app is deployed using GitHub pages. You can view it using the 'live demo' ab
 - Twitter: [@twitterhandle](https://twitter.com/henrykc24)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/henry-kc)
 
+👤 **Elmar Abdulkarimov**
+
+- GitHub: [@elmar8287](https://github.com/elmar8287)
 
 ## 🤝 Contributing
 
