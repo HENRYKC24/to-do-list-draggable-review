@@ -50,6 +50,7 @@ describe('Add Items to the List', () => {
       completed: false,
     });
   });
+
   test('Adding two more items reflects in the storage', () => {
     description = 'Go jugging';
     addToDo(description);
@@ -69,5 +70,28 @@ describe('Add Items to the List', () => {
     description = 'Do one last thing';
     addToDo(description);
     expect(localStorage.getFromStorage().length).toEqual(4);
+  });
+});
+
+describe('Remove Items from the List', () => {
+  test('Able to remove the second item', () => {
+    const allItems = localStorage.getFromStorage();
+    const itemToRemove = allItems[1];
+    removeOne(itemToRemove);
+    expect(
+      localStorage.getFromStorage().filter((todo) => todo.description === 'Go jugging').length,
+    ).toEqual(0);
+  });
+
+  test('Able to remove the last item', () => {
+    removeOne(localStorage.getLastElement());
+    expect(
+      localStorage.getFromStorage().filter((todo) => todo.description === 'Do one last thing').length,
+    ).toEqual(0);
+  });
+
+  test('Able to remove all items', () => {
+    localStorage.clearAll();
+    expect(localStorage.getFromStorage().length).toEqual(0);
   });
 });
