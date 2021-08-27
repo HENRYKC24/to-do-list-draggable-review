@@ -50,4 +50,24 @@ describe('Add Items to the List', () => {
       completed: false,
     });
   });
+  test('Adding two more items reflects in the storage', () => {
+    description = 'Go jugging';
+    addToDo(description);
+    description = 'Read the two novels';
+    addToDo(description);
+
+    const ulChildren1 = Array.from(document.querySelectorAll('.list-container > li')).length;
+    populateUl(localStorage.getFromStorage());
+    const ulChildren2 = Array.from(document.querySelectorAll('.list-container > li')).length;
+
+    expect(ulChildren1 === 1 && ulChildren2 === 3).toBe(true);
+
+    expect(localStorage.getFromStorage().length).toEqual(3);
+  });
+
+  test('Adding the forth item reflects in the storage', () => {
+    description = 'Do one last thing';
+    addToDo(description);
+    expect(localStorage.getFromStorage().length).toEqual(4);
+  });
 });
