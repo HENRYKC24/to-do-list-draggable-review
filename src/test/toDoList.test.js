@@ -95,3 +95,31 @@ describe('Remove Items from the List', () => {
     expect(localStorage.getFromStorage().length).toEqual(0);
   });
 });
+
+describe('Edit Items in the List, Remove when empty', () => {
+  test('Edit the second text from man to woman', () => {
+    description = 'Man';
+    addToDo(description);
+    description = 'Read the two novels';
+    addToDo(description);
+    const firstTask = localStorage.getFromStorage()[0];
+    editToDo(firstTask, 'Woman');
+    expect(firstTask.description).toBe('Woman');
+  });
+
+  test('Edit the second text to empty', () => {
+    const secondTask = localStorage.getFromStorage()[1];
+    editToDo(secondTask, '');
+    const { description } = secondTask;
+    if (description === '') {
+      removeOne(secondTask);
+    }
+    expect(localStorage.getFromStorage().length).toBe(1);
+  });
+
+  test("Edit the only remaining task description to 'Wash the car'", () => {
+    const onlyRemainingTask = localStorage.getFromStorage()[0];
+    editToDo(onlyRemainingTask, 'Wash the car');
+    expect(onlyRemainingTask.description).toBe('Wash the car');
+  });
+});
