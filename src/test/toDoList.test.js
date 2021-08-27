@@ -123,3 +123,30 @@ describe('Edit Items in the List, Remove when empty', () => {
     expect(onlyRemainingTask.description).toBe('Wash the car');
   });
 });
+
+describe('Update task completed status', () => {
+  test('The completed prop of the first task should be true', () => {
+    description = 'Code up an e-commerce website';
+    addToDo(description);
+    description = 'Review the pull request';
+    addToDo(description);
+    const firstTask = localStorage.getFromStorage()[0];
+    toggleCompleted(firstTask);
+    const { completed } = firstTask;
+    expect(completed).toBe(true);
+  });
+
+  test('The completed prop of the first task is reverted to false', () => {
+    const firstTask = localStorage.getFromStorage()[0];
+    toggleCompleted(firstTask);
+    const { completed } = firstTask;
+    expect(completed).toBe(false);
+  });
+
+  test('The completed prop of the last task is changed to true', () => {
+    const lastTask = localStorage.getLastElement();
+    toggleCompleted(lastTask);
+    const { completed } = lastTask;
+    expect(completed).toBe(true);
+  });
+});
